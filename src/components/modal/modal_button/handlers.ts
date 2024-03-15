@@ -1,9 +1,9 @@
-import RestaurantListStorageService from "../../../services/restaurantListStorageService";
+import RestaurantCRUD from "../../../domain/RestaurantCRUD";
 import validateRestaurantState from "../../../services/validateRestaurantState";
 import restaurantStateStore from "../../../store/RestaurantStateStore";
 import { Irestaurant } from "../../../types/restaurant";
 import { IinvalidResult } from "../../../types/validate";
-import RestaurantList from "../../restaurant_list/RestaurantList";
+import RestaurantList from "../../restaurant-list/RestaurantList";
 
 const initializeFormState = () => {
   const modalForm: HTMLFormElement = document.getElementById(
@@ -18,7 +18,7 @@ const addNewRestaurant = (modal: Element, restaurantInfo: Irestaurant) => {
 
   if (invalidMessage.length === 0) {
     modal.classList.remove("modal--open");
-    RestaurantListStorageService.setData(restaurantInfo);
+    RestaurantCRUD.addNewRestaurant(restaurantInfo);
     initializeFormState();
   }
 };

@@ -1,7 +1,6 @@
+import restaurantListStateStore from "../store/RestaurantListStateStore";
 import { Icategory } from "../types/category";
 import { Irestaurant } from "../types/restaurant";
-
-import RestaurantListStorageService from "./restaurantListStorageService";
 
 const valid = {
   isValid: true,
@@ -52,7 +51,7 @@ const validate = {
   },
 
   checkDuplicate(name?: string) {
-    const restaurantList = RestaurantListStorageService.getData();
+    const restaurantList = restaurantListStateStore.getListData();
     return restaurantList.find(
       (restaurant: Irestaurant) => restaurant.name === name,
     );
@@ -70,11 +69,11 @@ const validate = {
   },
 
   validateDescription(description?: string) {
-    if (description?.length && description.length > 200) {
+    if (description?.length && description.length > 300) {
       return {
         targetClassName: "invalid_description",
         isValid: false,
-        errorMessage: "설명의 최대 글자수는 200자입니다.",
+        errorMessage: "설명의 최대 글자수는 300자입니다.",
       };
     }
     return valid;
@@ -85,7 +84,7 @@ const validate = {
       return {
         targetClassName: "invalid_link",
         isValid: false,
-        errorMessage: "유효한 주소값을 입력해주세요",
+        errorMessage: "유효한 주소값을 입력해주세요.",
       };
     }
     return valid;

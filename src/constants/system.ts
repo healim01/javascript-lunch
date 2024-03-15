@@ -1,5 +1,4 @@
 export const CATEGORIES = {
-  ALL: "전체",
   KOREAN: "한식",
   CHINESE: "중식",
   JAPANESE: "일식",
@@ -8,11 +7,18 @@ export const CATEGORIES = {
   OTHER: "기타",
 };
 
+export const ALL = "전체";
+
 export type CategoryValue = (typeof CATEGORIES)[keyof typeof CATEGORIES];
 
 export const SORTS = {
   BYNAME: "이름순",
   BYDISTANCE: "거리순",
+};
+
+export const SORT_VALUE = {
+  BYNAME: "name",
+  BYDISTANCE: "distance",
 };
 
 export const DISTANCES = {
