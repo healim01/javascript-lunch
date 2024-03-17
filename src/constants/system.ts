@@ -7,7 +7,7 @@ export const CATEGORIES = {
   OTHER: "기타",
 };
 
-export const ALL = "전체";
+export const ALL_CATEGORY = "전체";
 
 export type CategoryValue = (typeof CATEGORIES)[keyof typeof CATEGORIES];
 
@@ -28,3 +28,7 @@ export const DISTANCES = {
   "20": "20분 내",
   "30": "30분 내",
 };
+
+export const MAX_LENGTH_OF_DESCRIPTION = 300;
+
+export const REMOVE_INNER_TAG = /<[^>]*>?/gm;

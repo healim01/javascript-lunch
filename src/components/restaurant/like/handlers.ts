@@ -17,11 +17,11 @@ const likeButtonClickHandler = (button: Element) => {
   });
 };
 
-const likeChange = () => {
+const addLikeClickEvent = () => {
   const likeButtons = document.querySelectorAll(".restaurant__like-button");
   likeButtons.forEach((button) => {
     likeButtonClickHandler(button);
   });
 };
 
-export default likeChange;
+export default addLikeClickEvent;

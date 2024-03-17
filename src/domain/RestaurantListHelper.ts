@@ -1,4 +1,4 @@
-import { ALL, SORT_VALUE } from "../constants/system";
+import { ALL_CATEGORY, SORT_VALUE } from "../constants/system";
 import filterState from "../store/FilterStateStore";
 import { Iall, Icategory } from "../types/category";
 import { Irestaurant, IrestaurantList } from "../types/restaurant";
@@ -26,7 +26,7 @@ class RestaurantListHelper implements IrestaurantList {
   }
 
   filterByCategory(category: Icategory | Iall, restaurantList: Irestaurant[]) {
-    if (category === ALL) {
+    if (category === ALL_CATEGORY) {
       return restaurantList;
     }
 
@@ -35,8 +35,8 @@ class RestaurantListHelper implements IrestaurantList {
     );
   }
 
-  filterByFav(fav: boolean, restaurantList: Irestaurant[]) {
-    if (fav === true)
+  filterByLiked(liked: boolean, restaurantList: Irestaurant[]) {
+    if (liked === true)
       return restaurantList.filter((restaurant) => restaurant.isLike);
     return restaurantList;
   }
@@ -46,7 +46,10 @@ class RestaurantListHelper implements IrestaurantList {
       filterState.getFilterInfo().sort,
       this.filterByCategory(filterState.getFilterInfo().filter, restaurantList),
     );
-    return this.filterByFav(filterState.getFilterInfo().fav, filteredBarData);
+    return this.filterByLiked(
+      filterState.getFilterInfo().liked,
+      filteredBarData,
+    );
   }
 }
 

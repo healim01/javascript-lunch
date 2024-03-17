@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+import { REMOVE_INNER_TAG } from "../constants/system";
 import Restaurant from "../domain/SetRestaurant";
 import { Icategory } from "../types/category";
 import { Idistance } from "../types/distance";
@@ -8,7 +9,7 @@ import restaurantListStateStore from "./RestaurantListStateStore";
 
 class RestaurantStateStore {
   #restaurantState: Partial<Irestaurant> = {
-    id: restaurantListStateStore.getListCount(),
+    id: restaurantListStateStore.getIdNumber(),
     category: undefined,
     name: undefined,
     distance: undefined,
@@ -19,7 +20,7 @@ class RestaurantStateStore {
 
   resetState() {
     this.#restaurantState = {
-      id: restaurantListStateStore.getListCount(),
+      id: restaurantListStateStore.getIdNumber(),
       category: undefined,
       name: undefined,
       distance: undefined,
@@ -34,7 +35,7 @@ class RestaurantStateStore {
   }
 
   setName(inputName: string) {
-    this.#restaurantState.name = inputName.replace(/<[^>]*>?/g, "");
+    this.#restaurantState.name = inputName.replace(REMOVE_INNER_TAG, "");
   }
 
   setDistance(selectDistance: Idistance) {
@@ -43,13 +44,13 @@ class RestaurantStateStore {
 
   setDescription(inputDescription: string) {
     this.#restaurantState.description = inputDescription.replace(
-      /<[^>]*>?/g,
+      REMOVE_INNER_TAG,
       "",
     );
   }
 
   setLink(inputLink: string) {
-    this.#restaurantState.link = inputLink.replace(/<[^>]*>?/g, "");
+    this.#restaurantState.link = inputLink.replace(REMOVE_INNER_TAG, "");
   }
 
   getRestaurantField() {
